@@ -104,6 +104,7 @@ return [
     'attributes' => [
         'title' => 'フォルダ名',
         'email'=>'メールアドレス',
+        'token' => 'トークン',
         'password'=>'パスワード',
         'address'=>'住所',
         'phone_number'=>'電話番号',
