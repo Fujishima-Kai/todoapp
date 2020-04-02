@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Folder;
 use App\Http\Requests\CreateFolder;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 class FolderController extends Controller
 {
     public function showCreateForm()
