@@ -40,6 +40,7 @@
               <th>状態</th>
               <th>期限</th>
               <th></th>
+              <th></th>
             </tr>
             </thead>
             <tbody>
@@ -53,6 +54,7 @@
                 <td>
                   <a href="{{ route('tasks.edit',  ['folder' => $folder, 'task' => $task]) }}">編集</a>
                 </td>
+                <td>詳細</td>
               </tr>
             @endforeach
             </tbody>

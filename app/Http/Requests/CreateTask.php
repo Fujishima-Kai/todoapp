@@ -26,6 +26,8 @@ class CreateTask extends FormRequest
         return [
             'title' => 'required|max:100',
             'due_date' => 'required|date|after_or_equal:today',
+            'assigner_id' => 'required',
+            'assigning_id' => 'required',
         ];
     }
 

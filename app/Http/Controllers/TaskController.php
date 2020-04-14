@@ -10,25 +10,25 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 class TaskController extends Controller
 {
-    public function index(Folder $folder)
+    public function index(int $folder)
     {
         // ユーザーのフォルダを取得する
         $folders = Auth::user()->folders()->get();
 
         // 選ばれたフォルダに紐づくタスクを取得する
-        $tasks = $folder->tasks()->get();
+        $tasks = Folder::find($folder)->tasks()->get();
         
-        return view('tasks/index', [
+        return view('tasks.index', [
             'folders' => $folders,
-            'current_folder_id' => $folder->id,
+            'current_folder_id' => $folder,
             'tasks' => $tasks,
         ]);
     }
 
-    public function showCreateForm(Folder $folder)
+    public function showCreateForm(int $folder)
     {
-        return view('tasks/create', [
-            'folder_id' => $folder->id,
+        return view('tasks.create', [
+            'folder_id' => $folder,
         ]);
     }
 
@@ -37,11 +37,13 @@ class TaskController extends Controller
         $task = new Task();
         $task->title = $request->title;
         $task->due_date = $request->due_date;
+        $task->assigner_id = $request->assigner_id;
+        $task->assigning_id = $request->assigning_id;
+        $task->assing_date = Carbon::now();
 
         $folder->tasks()->save($task);
-
         return redirect()->route('tasks.index', [
-            'id' => $folder->id,
+            'folder' => $folder->id,
         ]);
     }
 

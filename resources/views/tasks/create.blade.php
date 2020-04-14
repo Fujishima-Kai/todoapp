@@ -19,7 +19,7 @@
                 @endforeach
               </div>
             @endif
-            <form action="{{ route('tasks.create', ['id' => $folder_id]) }}" method="POST">
+            <form action="{{ route('tasks.add', ['folder' => $folder_id]) }}" method="POST">
               @csrf
               <div class="form-group">
                 <label for="title">タイトル</label>
@@ -28,6 +28,14 @@
               <div class="form-group">
                 <label for="due_date">期限</label>
                 <input type="text" class="form-control" name="due_date" id="due_date" value="{{ old('due_date') }}" />
+              </div>
+              <div class="form-group">
+                <label for="assigner_id">アサインした人</label>
+                <input type="text" class="form-control" name="assigner_id" id="assigner_id" value="{{ old('assigner_id') }}" />
+              </div>
+              <div class="form-group">
+                <label for="assigning_id">アサインされた人</label>
+                <input type="text" class="form-control" name="assigning_id" id="assigning_id" value="{{ old('assigning_id') }}" />
               </div>
               <div class="text-right">
                 <button type="submit" class="btn btn-primary">送信</button>
